@@ -378,12 +378,12 @@ class BaseMonitor(QtWidgets.QTableWidget):
 
     def save_setting(self) -> None:
         """"""
-        settings: QtCore.QSettings = QtCore.QSettings(self.__class__.__name__, "custom")
+        settings: QtCore.QSettings = QtCore.QSettings("vnpy/" + self.__class__.__name__, "custom")
         settings.setValue("column_state", self.horizontalHeader().saveState())
 
     def load_setting(self) -> None:
         """"""
-        settings: QtCore.QSettings = QtCore.QSettings(self.__class__.__name__, "custom")
+        settings: QtCore.QSettings = QtCore.QSettings("vnpy/" + self.__class__.__name__, "custom")
         column_state = settings.value("column_state")
 
         if isinstance(column_state, QtCore.QByteArray):

@@ -28,7 +28,7 @@ from .widget import (
     GlobalDialog
 )
 from ..engine import MainEngine, BaseApp
-from ..utility import get_icon_path, TRADER_DIR
+from ..utility import get_icon_path
 from ..locale import _
 
 
@@ -44,7 +44,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.main_engine: MainEngine = main_engine
         self.event_engine: EventEngine = event_engine
 
-        self.window_title: str = _("VeighNa Trader 社区版 - {}   [{}]").format(vnpy.__version__, TRADER_DIR)
+        self.window_title: str = _("VeighNa-Trader-Community-{}").format(vnpy.__version__)
 
         self.widgets: Dict[str, QtWidgets.QWidget] = {}
         self.monitors: Dict[str, BaseMonitor] = {}
@@ -286,7 +286,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Save current window size and state by trader path and setting name.
         """
-        settings: QtCore.QSettings = QtCore.QSettings(self.window_title, name)
+        settings: QtCore.QSettings = QtCore.QSettings("vnpy/" + self.window_title, name)
         settings.setValue("state", self.saveState())
         settings.setValue("geometry", self.saveGeometry())
 
@@ -294,7 +294,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Load previous window size and state by trader path and setting name.
         """
-        settings: QtCore.QSettings = QtCore.QSettings(self.window_title, name)
+        settings: QtCore.QSettings = QtCore.QSettings("vnpy/" + self.window_title, name)
         state = settings.value("state")
         geometry = settings.value("geometry")
 

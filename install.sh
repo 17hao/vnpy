@@ -20,9 +20,9 @@ function install-ta-lib()
     wget https://pip.vnpy.com/colletion/ta-lib-0.4.0-src.tar.gz
     tar -xf ta-lib-0.4.0-src.tar.gz
     cd ta-lib
-    ./configure --prefix=/usr/local
-    make -j1
-    make install
+    sudo ./configure --prefix=/usr/local
+    sudo make -j1
+    sudo make install
     popd
 
     $python -m pip install ta-lib==0.4.24 --index $pypi_index
